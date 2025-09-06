@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KadoBot - Advanced YouTube Marketing Automation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --text: #34495e;
+            --text-light: #7f8c8d;
+            --gradient: linear-gradient(135deg, #3498db, #2c3e50);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .btn-download {
+            background: var(--success);
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+        
+        .btn-download:hover {
+            background: #27ae60;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        /* Features Section */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features {
+            padding: 60px 0;
+            background: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .feature-card p {
+            color: var(--text-light);
+        }
+        
+        /* Download Section */
+        .download {
+            padding: 100px 0;
+            background: var(--light);
+            text-align: center;
+        }
+        
+        .download-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .download-option {
+            background: white;
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .download-option:hover {
+            transform: translateY(-5px);
+        }
+        
+        .download-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        /* User Agents Section */
+        .user-agents {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .agents-container {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .agent-list {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            text-align: left;
+        }
+        
+        .agent-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            font-family: monospace;
+        }
+        
+        /* IP Simulation Section */
+        .ip-simulation {
+            padding: 80px 0;
+            background: var(--light);
+        }
+        
+        .simulation-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .simulation-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .simulation-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span>KadoBot</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#download">Download</a></li>
+                    <li><a href="#user-agents">User Agents</a></li>
+                    <li><a href="#ip-simulation">IP Simulation</a></li>
+                </ul>
+                <a href="#download" class="btn btn-outline">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Advanced YouTube Marketing Automation</h1>
+            <p>Grow your channel faster with AI-powered engagement, views, and subscriber growth tools</p>
+            <div class="hero-buttons">
+                <a href="#features" class="btn">Explore Features</a>
+                <a href="#download" class="btn btn-outline">Download Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Powerful Automation Features</h2>
+                <p>KadoBot is an all-in-one YouTube marketing solution that helps content creators and marketers automate views, engagement, and growth strategies</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Account Management</h3>
+                    <p>Manage unlimited YouTube accounts with multiple Gmail logins, profile and cookies support, and proxy integration.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-binoculars"></i>
+                    </div>
+                    <h3>Viewing Methods</h3>
+                    <p>Multiple viewing options including keyword search, direct links, playlist iteration, homepage sources, and Facebook-shared links.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Automation Features</h3>
+                    <p>Auto CAPTCHA solving, multi-threaded execution, random delays between actions, device emulation, and cache management.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Auto Commenting</h3>
+                    <p>Advanced comment files with spin-syntax, precision comment control, and daily limits per channel.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-thumbs-up"></i>
+                    </div>
+                    <h3>Like/Dislike Automation</h3>
+                    <p>Automate video likes and dislikes, with options to like your own comments for increased visibility.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Subscriber Growth</h3>
+                    <p>Automate new subscriptions with targeted channel following and track your growth with detailed analytics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download" id="download">
+        <div class="container">
+            <div class="section-title">
+                <h2>Download KadoBot</h2>
+                <p>Get started with the most powerful YouTube automation tool available</p>
+            </div>
+
+            <div class="download-options">
+                <div class="download-option">
+                    <div class="download-icon">
+                        <i class="fab fa-windows"></i>
+                    </div>
+                    <h3>Windows Version</h3>
+                    <p>Compatible with Windows 10 & 11</p>
+                    <a href="#" class="btn btn-download">Download for Windows</a>
+                    <p class="version">Version 2.3.4 | 78.5 MB</p>
+                </div>
+
+                <div class="download-option">
+                    <div class="download-icon">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                    <h3>Mac Version</h3>
+                    <p>For macOS 10.15 and newer</p>
+                    <a href="#" class="btn btn-download">Download for Mac</a>
+                    <p class="version">Version 2.3.4 | 92.1 MB</p>
+                </div>
+
+                <div class="download-option">
+                    <div class="download-icon">
+                        <i class="fab fa-linux"></i>
+                    </div>
+                    <h3>Linux Version</h3>
+                    <p>For Ubuntu, Debian, and Fedora</p>
+                    <a href="#" class="btn btn-download">Download for Linux</a>
+                    <p class="version">Version 2.3.4 | 85.7 MB</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 50px; background: white; padding: 30px; border-radius: 10px;">
+                <h3>Installation Instructions</h3>
+                <p>1. Download the appropriate version for your operating system</p>
+                <p>2. Run the installer and follow the on-screen instructions</p>
+                <p>3. Launch KadoBot and enter your license key</p>
+                <p>4. Start configuring your YouTube automation campaigns</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Agents Section -->
+    <section class="user-agents" id="user-agents">
+        <div class="container">
+            <div class="section-title">
+                <h2>Supported User Agents</h2>
+                <p>KadoBot includes a comprehensive database of user agents for realistic browser simulation</p>
+            </div>
+
+            <div class="agents-container">
+                <h3>Latest User Agents</h3>
+                <div class="agent-list">
+                    <div class="agent-item">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36</div>
+                    <div class="agent-item">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36</div>
+                    <div class="agent-item">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/114.0</div>
+                    <div class="agent-item">Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36</div>
+                    <div class="agent-item">Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Mobile/15E148 Safari/604.1</div>
+                    <div class="agent-item">Mozilla/5.0 (iPad; CPU OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Mobile/15E148 Safari/604.1</div>
+                    <div class="agent-item">Mozilla/5.0 (Linux; Android 10; SM-G981B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Mobile Safari/537.36</div>
+                    <div class="agent-item">Mozilla/5.0 (Linux; Android 13; SM-S901B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IP Simulation Section -->
+    <section class="ip-simulation" id="ip-simulation">
+        <div class="container">
+            <div class="section-title">
+                <h2>Advanced IP Simulation</h2>
+                <p>KadoBot includes sophisticated IP rotation and simulation technology</p>
+            </div>
+
+            <div class="simulation-cards">
+                <div class="simulation-card">
+                    <div class="simulation-icon">
+                        <i class="fas fa-random"></i>
+                    </div>
+                    <h3>Automatic IP Rotation</h3>
+                    <p>KadoBot automatically rotates IP addresses to simulate organic traffic from different locations</p>
+                </div>
+
+                <div class="simulation-card">
+                    <div class="simulation-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Global IP Coverage</h3>
+                    <p>IP addresses from over 50 countries to target specific geographic audiences</p>
+                </div>
+
+                <div class="simulation-card">
+                    <div class="simulation-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Residential IP Support</h3>
+                    <p>Option to use residential IPs for the highest level of authenticity</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 50px; background: white; padding: 30px; border-radius: 10px;">
+                <h3>IP Simulation Features</h3>
+                <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
+                    <li>Automatic IP rotation based on configurable time intervals</li>
+                    <li>Support for HTTP, HTTPS, and SOCKS proxies</li>
+                    <li>Dedicated mobile IP simulation (3G/4G networks)</li>
+                    <li>IP health monitoring and automatic replacement of blocked IPs</li>
+                    <li>Custom IP geolocation targeting</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your YouTube Growth?</h2>
+            <p>Download KadoBot today and start automating your YouTube marketing with advanced IP simulation features</p>
+            <a href="#download" class="btn btn-download">Download Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>KadoBot</h3>
+                    <p>Advanced YouTube marketing automation suite for content creators and marketers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Product</h3>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#download">Download</a></li>
+                        <li><a href="#user-agents">User Agents</a></li>
+                        <li><a href="#ip-simulation">IP Simulation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Support Center</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2023 KadoBot. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
